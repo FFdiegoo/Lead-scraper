@@ -1,0 +1,23 @@
+# Omgeving & secrets
+.env
+*.env
+
+# Output bestanden (leads blijven lokaal)
+leads.xlsx
+logs/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
