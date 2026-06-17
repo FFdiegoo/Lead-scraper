@@ -6,8 +6,9 @@ BASE_DIR = Path(__file__).parent
 load_dotenv(BASE_DIR / ".env")
 
 RESEND_API_KEY = os.getenv("RESEND_API_KEY", "")
-FROM_EMAIL = os.getenv("FROM_EMAIL", "diego@fullforceai.nl")
+FROM_EMAIL = os.getenv("FROM_EMAIL", "diego@full-force.ai")
 FROM_NAME = os.getenv("FROM_NAME", "Diego | Full Force AI")
+HUNTER_API_KEY = os.getenv("HUNTER_API_KEY", "")
 
 # Breda centrum coördinaten
 BREDA_COORDS = (51.5719, 4.7683)
