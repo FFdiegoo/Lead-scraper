@@ -42,20 +42,18 @@ LEADS_PER_RUN = 5
 LEADS_FILE = BASE_DIR / "leads.xlsx"
 EMAIL_DELAY_HOURS = 48
 
-EMAIL_SUBJECT = "Samen je concurrenten voor zijn? | Full Force AI"
+EMAIL_SUBJECT = "Hoeveel uur verlies jij per week? | Full Force AI"
 
 EMAIL_BODY_TEMPLATE = """Beste {first_name},
 
-Ik ben Diego, oprichter van Full Force AI hier in de regio Breda. Wij zijn gespecialiseerd in snelle, functionele AI-oplossingen voor technische bedrijven.
+Snel vraagje, hoeveel uur verdwijnt er bij jullie per week in werk dat niks oplevert? Offertes, nabellen, uitzoeken, bijhouden. Uren die je niet kunt factureren.
 
-Iedereen weet dat AI de toekomst is, maar bijna niemand in onze sector heeft de eerste stap gezet. Er is nu een race gaande. Wie als eerste slim automatiseert, slaat de concurrentie definitief uit het veld.
+Bij de meeste bedrijven die ik spreek is dat meer dan ze denken. Of niemand in het bedrijf heeft enig idee van hoeveel uren dit zijn.
 
-Gevestigde softwarebedrijven claimen jaren ervaring, maar luister naar dit: ik ben nieuw, hongerig en heb een enorme bewijsdrang. Het leveren van een topproduct is voor mijn bedrijf net zo cruciaal als voor dat van jou. Ik neem persoonlijk geen pauze totdat jouw systeem vlekkeloos draait en winst oplevert. Geen lange consultancy-trajecten, binnen 2 weken heb je je eerste live demo.
+Ik los dat op. Niet met een duur consult of een lang traject, maar met slimme AI die ik aanpas op hoe jullie werken. Snel, praktisch, en binnen 2 weken live.
 
-Durf je het aan om samen met mij je concurrenten voor te zijn? Stuur me een korte reply, dan sparren we binnenkort een kwartiertje over waar de directe winst ligt in jouw bedrijf.
+Ik heb volgende week een paar plekken vrij. Ik hoor graag van je!
 
-Met vriendelijke groet,
-Diego
-
-Full Force AI
+Diego Scognamiglio
+www.Full-Force.AI
 """

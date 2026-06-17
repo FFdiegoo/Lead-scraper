@@ -97,7 +97,19 @@ def get_pending_emails(wb: openpyxl.Workbook) -> list:
         owner_email = row[COL["Email Eigenaar"] - 1]
         added_on_str = row[COL["Toegevoegd Op"] - 1]
 
+        owner_name = row[COL["Naam Eigenaar"] - 1] or ""
+
         if status != "Nieuw" or not owner_email or not added_on_str:
+            continue
+
+        # Sla over als voornaam ontbreekt
+        if not owner_name or not owner_name.strip():
+            continue
+
+        # Controleer of de voornaam voorkomt in het emailadres (local part voor @)
+        first_name = owner_name.strip().split()[0].lower()
+        email_local = owner_email.split("@")[0].lower()
+        if first_name not in email_local and first_name[:1] not in email_local.split(".")[0]:
             continue
 
         try:
@@ -107,7 +119,7 @@ def get_pending_emails(wb: openpyxl.Workbook) -> list:
                 pending.append({
                     "row": row_idx,
                     "name": row[COL["Bedrijf"] - 1],
-                    "owner_name": row[COL["Naam Eigenaar"] - 1] or "",
+                    "owner_name": owner_name,
                     "owner_email": owner_email,
                 })
         except ValueError:
