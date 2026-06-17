@@ -7,9 +7,16 @@ Verrijkt een lead met eigenaarsnaam en email adres via:
 """
 import re
 import time
+import warnings
 import requests
 from bs4 import BeautifulSoup
-from duckduckgo_search import DDGS
+
+try:
+    from ddgs import DDGS
+except ImportError:
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        from duckduckgo_search import DDGS  # type: ignore
 from scraper.email_finder import (
     extract_all_emails,
     is_generic,
@@ -102,7 +109,9 @@ def _extract_owner_from_text(text: str) -> str | None:
         m = re.search(pattern, text, re.IGNORECASE)
         if m:
             name = m.group(1).strip()
-            if 5 <= len(name) <= 50:
+            # Naam moet twee woorden hebben en elk woord minimaal 2 tekens
+            words = name.split()
+            if len(words) >= 2 and all(len(w) >= 2 for w in words) and 6 <= len(name) <= 50:
                 return name
     return None
 

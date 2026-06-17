@@ -1,67 +1,54 @@
 @echo off
 :: ============================================================
-::  Full Force AI — Lead Scraper
+::  Full Force AI - Lead Scraper
 ::  Windows Task Scheduler Setup
-::  Voer dit script uit als Administrator (rechtermuisknop → Als administrator uitvoeren)
+::  Rechtermuisknop -> Als administrator uitvoeren
 :: ============================================================
 
 set SCRIPT_DIR=%~dp0
-set PYTHON_PATH=python
+set PYTHON=%SCRIPT_DIR%.venv\Scripts\python.exe
 
-:: Controleer of Python beschikbaar is
-where python >nul 2>&1
-if %ERRORLEVEL% NEQ 0 (
-    echo FOUT: Python niet gevonden. Zorg dat Python in je PATH staat.
+:: Controleer of de venv bestaat
+if not exist "%PYTHON%" (
+    echo FOUT: .venv niet gevonden. Voer eerst uit:
+    echo   python -m venv .venv
+    echo   .venv\Scripts\python.exe -m pip install -r requirements.txt
     pause
     exit /b 1
 )
 
-:: Maak logs map aan als die niet bestaat
 if not exist "%SCRIPT_DIR%logs" mkdir "%SCRIPT_DIR%logs"
 
 echo Aanmaken van geplande taken...
 echo.
 
-:: ── Taak 1: Dagelijkse scraper om 08:00 ─────────────────────────────────────
+:: Taak 1: Dagelijkse scraper om 08:00
 schtasks /create ^
     /tn "FFAI_LeadScraper" ^
-    /tr "\"%PYTHON_PATH%\" \"%SCRIPT_DIR%main.py\" >> \"%SCRIPT_DIR%logs\scraper.log\" 2>&1" ^
-    /sc DAILY ^
-    /st 08:00 ^
-    /f ^
-    /rl HIGHEST
+    /tr "\"%PYTHON%\" \"%SCRIPT_DIR%main.py\" >> \"%SCRIPT_DIR%logs\scraper.log\" 2>&1" ^
+    /sc DAILY /st 08:00 /f /rl HIGHEST
 
 if %ERRORLEVEL% EQU 0 (
-    echo [OK] Taak aangemaakt: FFAI_LeadScraper — dagelijks om 08:00
+    echo [OK] FFAI_LeadScraper aangemaakt - dagelijks om 08:00
 ) else (
-    echo [FOUT] Kon FFAI_LeadScraper niet aanmaken. Draai als Administrator?
+    echo [FOUT] Kon FFAI_LeadScraper niet aanmaken.
 )
 
-echo.
-
-:: ── Taak 2: Dagelijkse email verzender om 09:30 ──────────────────────────────
+:: Taak 2: Dagelijkse email sender om 09:30
 schtasks /create ^
     /tn "FFAI_EmailSender" ^
-    /tr "\"%PYTHON_PATH%\" \"%SCRIPT_DIR%send_emails.py\" >> \"%SCRIPT_DIR%logs\email.log\" 2>&1" ^
-    /sc DAILY ^
-    /st 09:30 ^
-    /f ^
-    /rl HIGHEST
+    /tr "\"%PYTHON%\" \"%SCRIPT_DIR%send_emails.py\" >> \"%SCRIPT_DIR%logs\email.log\" 2>&1" ^
+    /sc DAILY /st 09:30 /f /rl HIGHEST
 
 if %ERRORLEVEL% EQU 0 (
-    echo [OK] Taak aangemaakt: FFAI_EmailSender — dagelijks om 09:30
+    echo [OK] FFAI_EmailSender aangemaakt - dagelijks om 09:30
 ) else (
-    echo [FOUT] Kon FFAI_EmailSender niet aanmaken. Draai als Administrator?
+    echo [FOUT] Kon FFAI_EmailSender niet aanmaken.
 )
 
 echo.
 echo ============================================================
-echo  Taken aangemaakt! Je kunt ze beheren via:
-echo  Taakbeheer (Task Scheduler) → Taakplannerbibliotheek
+echo  Klaar! Beheer via: Taakplanner (taskschd.msc)
 echo ============================================================
-echo.
-echo  Handmatig testen:
-echo    python main.py
-echo    python send_emails.py
 echo.
 pause

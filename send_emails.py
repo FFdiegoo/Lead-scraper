@@ -1,11 +1,11 @@
 """
-Daily email sender — verstuurt emails naar leads die:
+Daily email sender: verstuurt emails naar leads die:
   - Status "Nieuw" hebben
   - 48 uur of langer geleden zijn toegevoegd
   - Een email adres hebben
 
-Gebruik: python send_emails.py
-Task Scheduler: dagelijks om 09:00
+Gebruik: .venv\Scripts\python.exe send_emails.py
+Task Scheduler: dagelijks om 09:30
 """
 from storage.excel_manager import get_workbook, get_pending_emails, mark_email_sent, save
 from outreach.email_sender import send_outreach_email
@@ -14,11 +14,11 @@ import config
 
 def main() -> None:
     print("=" * 50)
-    print("  Full Force AI — Email Verzender")
+    print("  Full Force AI - Email Verzender")
     print("=" * 50)
 
     if not config.RESEND_API_KEY:
-        print("\n✗ FOUT: RESEND_API_KEY is niet ingesteld in .env")
+        print("\n[FOUT] RESEND_API_KEY is niet ingesteld in .env")
         print("  Voeg je API key toe aan het .env bestand en probeer opnieuw.")
         return
 
@@ -53,9 +53,9 @@ def main() -> None:
     save(wb)
 
     print("=" * 50)
-    print(f"  ✓ Verstuurd : {sent}")
+    print(f"  [OK] Verstuurd : {sent}")
     if failed:
-        print(f"  ✗ Mislukt  : {failed}")
+        print(f"  [X]  Mislukt  : {failed}")
     print("=" * 50)
 
 
