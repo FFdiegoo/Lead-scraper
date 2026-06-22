@@ -48,11 +48,11 @@ EMAIL_BODY_TEMPLATE = """Beste {first_name},
 
 Snel vraagje, hoeveel uur verdwijnt er bij jullie per week in werk dat niks oplevert? Offertes, nabellen, uitzoeken, bijhouden. Uren die je niet kunt factureren.
 
-Bij de meeste bedrijven die ik spreek is dat meer dan ze denken. Of niemand in het bedrijf heeft enig idee van hoeveel uren dit zijn.
+Bij de meeste bedrijven die we spreken is dat meer dan ze denken. Of niemand in het bedrijf heeft enig idee van hoeveel uren dit zijn.
 
-Ik los dat op. Niet met een duur consult of een lang traject, maar met slimme AI die ik aanpas op hoe jullie werken. Snel, praktisch, en binnen 2 weken live.
+Wij lossen dat op. Niet met een duur consult of een lang traject, maar met slimme AI die we aanpassen op hoe jullie werken. Snel, praktisch, en binnen 2 weken live.
 
-Ik heb volgende week een paar plekken vrij. Ik hoor graag van je!
+We hebben volgende week een paar plekken vrij. We horen graag van je!
 
 Diego Scognamiglio
 www.Full-Force.AI
